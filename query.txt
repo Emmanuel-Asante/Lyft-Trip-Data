@@ -1,0 +1,56 @@
+-- Examine trips table
+SELECT *
+FROM trips;
+
+-- Examine riders table
+SELECT *
+FROM riders;
+
+-- Examine cars table
+SELECT *
+FROM cars;
+
+-- Cross join riders with cars
+SELECT riders.first,
+    riders.last,
+    cars.model
+FROM riders, cars;
+
+--  Join trips and riders and combine the two tables
+SELECT *
+FROM trips
+LEFT JOIN riders
+  ON trips.rider_id = riders.id;
+
+-- Create a link between the trips and the cars
+SELECT *
+FROM trips
+JOIN cars
+  ON trips.car_id = cars.id;
+
+-- Stack riders table on top of riders2 table
+SELECT *
+FROM riders
+UNION
+SELECT *
+FROM riders2;
+
+-- Average cost
+SELECT AVG(cost)
+  FROM trips;
+
+-- Riders who have used Lyft less than 500 times
+SELECT *
+FROM riders
+WHERE total_trips < 500;
+
+-- Number of cars that are active
+SELECT COUNT(*)
+FROM cars
+WHERE status = 'active';
+
+-- Two cars that have the highest trips_completed
+SELECT *
+FROM cars
+ORDER BY trips_completed DESC
+LIMIT 2;
